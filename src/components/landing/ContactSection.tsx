@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, MessageCircle } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
@@ -28,9 +29,16 @@ export function ContactSection() {
               </a>
             </div>
           </div>
-          <a href={`mailto:${SITE.email}?subject=Toolbox%20question`} className="mt-6 block">
-            <Button className="w-full">Send me an email</Button>
-          </a>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link href="/contact" className="flex-1">
+              <Button className="w-full">Contact form</Button>
+            </Link>
+            <a href={`mailto:${SITE.email}?subject=Toolbox%20question`} className="flex-1">
+              <Button variant="outline" className="w-full">
+                Email directly
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </section>

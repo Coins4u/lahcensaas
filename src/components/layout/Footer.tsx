@@ -47,6 +47,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/contact" className="hover:text-violet-400">
+                  Contact me
+                </Link>
+              </li>
+              <li>
                 <Link href="/pricing" className="hover:text-violet-400">
                   Access tiers
                 </Link>

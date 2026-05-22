@@ -31,3 +31,10 @@ export interface InvoiceRequest {
   email: string;
   planId: number;
 }
+
+export interface ContactRequest {
+  name: string;
+  email: string;
+  topic?: string;
+  message: string;
+}

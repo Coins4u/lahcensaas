@@ -10,6 +10,7 @@ import { SITE } from "@/lib/site";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
   { href: "/tools", label: "Toolbox" },
   { href: "/pricing", label: "Access" },
 ];

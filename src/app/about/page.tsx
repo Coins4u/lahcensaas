@@ -69,12 +69,12 @@ export default function AboutPage() {
           <Link href="/pricing">
             <Button variant="outline">Access tiers</Button>
           </Link>
-          <a href={`mailto:${SITE.email}`}>
+          <Link href="/contact">
             <Button variant="ghost">
               <Mail className="h-4 w-4" />
-              Email me
+              Contact me
             </Button>
-          </a>
+          </Link>
         </div>
       </article>
     </SiteLayout>

@@ -109,6 +109,43 @@ export async function sendAdminNotificationEmail(
   });
 }
 
+export async function sendContactMessageEmail(payload: {
+  name: string;
+  email: string;
+  topic: string;
+  message: string;
+}): Promise<void> {
+  const adminTo = process.env.ADMIN_EMAIL ?? process.env.SMTP_USER ?? SITE.email;
+  const from = process.env.SMTP_FROM ?? process.env.SMTP_USER ?? SITE.email;
+  const transporter = getTransporter();
+  const submittedAt = new Date().toLocaleString("en-GB", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<body style="font-family: system-ui, sans-serif; color: #0f172a; padding: 24px; line-height: 1.6;">
+  <h1 style="color: #7c3aed;">Contact form — ${SITE.shortName}</h1>
+  <p><strong>Name:</strong> ${escapeHtml(payload.name)}</p>
+  <p><strong>Email:</strong> ${escapeHtml(payload.email)}</p>
+  <p><strong>Topic:</strong> ${escapeHtml(payload.topic)}</p>
+  <p><strong>Time:</strong> ${escapeHtml(submittedAt)}</p>
+  <p style="margin-top: 20px; white-space: pre-wrap;">${escapeHtml(payload.message)}</p>
+</body>
+</html>`;
+
+  await transporter.sendMail({
+    from: `"${SITE.shortName}" <${from}>`,
+    to: adminTo,
+    replyTo: payload.email,
+    subject: `[${SITE.shortName}] Contact — ${payload.topic} (${payload.email})`,
+    text: `Contact message\n\n${payload.name}\n${payload.email}\n${payload.topic}\n${submittedAt}\n\n${payload.message}`,
+    html,
+  });
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
