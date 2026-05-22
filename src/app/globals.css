@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0c0e12;
+  --foreground: #e8eaed;
+  --surface: #141820;
+  --surface-elevated: #1a1f2a;
+  --border: #2a3142;
+  --brand: #a78bfa;
+  --brand-muted: #8b5cf6;
+  --accent-green: #34d399;
+  --muted: #94a3b8;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .tool-toolbar {
+    @apply flex flex-wrap items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3;
+  }
+
+  .tool-panel {
+    @apply rounded-xl border border-[var(--border)] bg-[var(--surface-elevated)] p-4;
+  }
+
+  .tool-panel-muted {
+    @apply rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4;
+  }
+
+  .tool-output {
+    @apply overflow-auto rounded-xl border border-[var(--border)] bg-[#0a0c10] p-4 font-mono text-sm leading-relaxed text-emerald-400;
+  }
+
+  .tool-label {
+    @apply mb-2 block text-xs font-semibold uppercase tracking-wider text-[var(--muted)];
+  }
+
+  .workspace-card {
+    @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-lg shadow-black/20;
+  }
+
+  .workspace-sidebar-item {
+    @apply flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm transition-all duration-150;
+  }
+
+  .workspace-sidebar-item-active {
+    @apply bg-gradient-to-r from-violet-600 to-purple-500 text-white shadow-md shadow-purple-900/40;
+  }
+
+  .workspace-sidebar-item-idle {
+    @apply text-slate-300 hover:bg-[var(--surface-elevated)] hover:text-white;
+  }
+
+  .section-heading {
+    @apply text-3xl font-bold tracking-tight text-white sm:text-4xl;
+  }
+
+  .section-sub {
+    @apply mt-4 text-lg leading-relaxed text-slate-400;
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
